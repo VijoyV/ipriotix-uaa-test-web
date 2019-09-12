@@ -8,14 +8,16 @@ class Landing extends Component {
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
+            <p className="flow-text grey-text text-darken-1">
+              Self Register, Login with 2FA, 
+              Know Your Credentials (Application / Role / Functions)
+              and maintain SSO using JWT
+            </p>
             <h4>
-              User Management with {" "}
+               with {" "}
+               <br />
               <span style={{ fontFamily: "monospace" }}>iPriotix IAM Server</span>
             </h4>
-            <p className="flow-text grey-text text-darken-1">
-              Register Users, Login with 2FA and Maintain SSO Session using JWT
-            </p>
-            <br />
             <div className="col s6">
               <Link
                 to="/register"
@@ -24,7 +26,7 @@ class Landing extends Component {
                   borderRadius: "3px",
                   letterSpacing: "1.5px"
                 }}
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                className="btn btn-large waves-effect waves-light orange accent-3"
               >
                 Register
               </Link>
@@ -37,7 +39,7 @@ class Landing extends Component {
                   borderRadius: "3px",
                   letterSpacing: "1.5px"
                 }}
-                className="btn btn-large btn-flat waves-effect white black-text"
+                className="btn btn-large btn-flat waves-effect hoverable blue accent-3"
               >
                 Log In
               </Link>

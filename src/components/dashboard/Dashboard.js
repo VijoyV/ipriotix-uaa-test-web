@@ -18,10 +18,9 @@ class Dashboard extends Component {
                 <div className="row">
                     <div className="col s12 center-align">
                         <h4>
-                            <b>Hey there,</b> {user.userName}
+                            Hey there, {user.email}
                             <p className="flow-text grey-text text-darken-1">
-                                You are logged into {" "}
-                                <span style={{ fontFamily: "monospace" }}>iPriotix IAM: User Management App</span>  👏
+                            You are logged into Demo WEB Application using iPriotix IAM Server 👏
                             </p>
                         </h4>
                         <button

@@ -11,6 +11,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      apiKey:"",
       errors: {}
     };
   }
@@ -41,10 +42,11 @@ class Login extends Component {
     e.preventDefault();
     const userData = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      apiKey: this.state.apiKey
     };
     console.log(userData);
-    this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+    this.props.loginUser(userData); 
   };
 
   render() {
@@ -59,13 +61,32 @@ class Login extends Component {
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
-                <b>Login</b> below
+                <b>Login</b>
               </h4>
               <p className="grey-text text-darken-1">
                 Don't have an account? <Link to="/register">Register</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
+            
+            <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.apiKey}
+                  error={errors.email}
+                  id="apiKey"
+                  type="text"
+                  className={classnames("", {
+                    invalid: errors.apiKey || errors.apiKeynotfound
+                  })}
+                />
+                <label htmlFor="apiKey">API Key</label>
+                <span className="red-text">
+                  {errors.apiKey}
+                  {errors.apiKeynotfound}
+                </span>
+              </div>
+            
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -83,6 +104,7 @@ class Login extends Component {
                   {errors.emailnotfound}
                 </span>
               </div>
+            
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -100,6 +122,7 @@ class Login extends Component {
                   {errors.passwordincorrect}
                 </span>
               </div>
+            
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
@@ -114,6 +137,7 @@ class Login extends Component {
                   Login
                 </button>
               </div>
+            
             </form>
           </div>
         </div>

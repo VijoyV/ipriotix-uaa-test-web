@@ -9,7 +9,10 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { userAppProfiles: [] }
+        this.state = { 
+            authApplicationName : 'Auth App',
+            authGroupsAndFunctions : [] 
+        }
 
         //-- Binding Class Level function = deleteFunction (NOT USING REDUX HERE)
         this.handleCredentialCheckClick = this.handleCredentialCheckClick.bind(this);
@@ -24,27 +27,23 @@ class Dashboard extends Component {
 
         console.log('IN: handleCredentialCheckClick()');
 
-        /**
-         * Need to set 2 headers 
-         *  1. Authorization Token. This is already set in login setAuthToken
-         *  2. x-api-key. This we will do here - HARDCODED FOR NOW.
-         * 
-         */
-
-        axios.defaults.headers.common["x-api-key"] = "e64bb79f-9c92-443f-b153-28ceab8e48a6";
-
         axios
             .get('/user/me/appProfile')
             .then(res => {
                 console.log('GET Result = ', res.data);
-                const { authorizedAppUserGroups } = res.data;
-                console.log('authorizedAppUserGroups', authorizedAppUserGroups);
-                this.setState({ userAppProfiles: authorizedAppUserGroups });
+                const { authApplicationName, authGroupsAndFunctions } = res.data;
+                
+                console.log('authApplicationName', authApplicationName);
+                console.log('authGroupsAndFunctions', authGroupsAndFunctions);
+                
+                this.setState(
+                    { authApplicationName : authApplicationName , 
+                      authGroupsAndFunctions: authGroupsAndFunctions });
             })
             .catch(err => { console.error(err); });
 
 
-        console.log('User Profiles Returned', this.state.userProfiles)
+        console.log('User Profiles Returned', this.state)
 
     };
 
@@ -90,8 +89,8 @@ class Dashboard extends Component {
                     <div class="col s12 m6">
                         <div class="card blue-grey darken-1">
                             <div class="card-content white-text">
-                                <span class="card-title">User App Profile</span>
-                                <p>{JSON.stringify(this.state.userAppProfiles)}</p>
+                                <span class="card-title">{this.state.authApplicationName}</span>
+                                <p>{JSON.stringify(this.state.authGroupsAndFunctions)}</p>
                             </div>
                         </div>
                     </div>
